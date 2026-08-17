@@ -1,0 +1,58 @@
+{
+  "description": "四条委派注册,与 Trellis 的 .zcode/hooks/*.py 一一对应。契约冻结:node <PLUGIN_ROOT>/hooks/trellis-bridge.mjs <script.py> [childTimeoutMs]。",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|clear|compact",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "node",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/trellis-bridge.mjs", "session-start.py", "29000"],
+            "timeoutMs": 30000,
+            "statusMessage": "Trellis: 注入会话上下文…"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "process",
+            "command": "node",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/trellis-bridge.mjs", "inject-workflow-state.py", "14000"],
+            "timeoutMs": 15000,
+            "statusMessage": "Trellis: 注入 workflow-state…"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Agent|Task",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "node",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/trellis-bridge.mjs", "inject-subagent-context.py", "29000"],
+            "timeoutMs": 30000,
+            "statusMessage": "Trellis: 注入子代理上下文…"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "process",
+            "command": "node",
+            "args": ["${ZCODE_PLUGIN_ROOT}/hooks/trellis-bridge.mjs", "inject-shell-session-context.py", "4000"],
+            "timeoutMs": 5000,
+            "statusMessage": "Trellis: 桥接会话身份…"
+          }
+        ]
+      }
+    ]
+  }
+}
