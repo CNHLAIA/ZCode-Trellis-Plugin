@@ -8,7 +8,7 @@
     {
       "name": "trellis-bridge",
       "source": "./trellis-bridge",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Trellis hooks 桥接插件：把 ZCode 插件 hooks 委派给项目内 .zcode/hooks/*.py。",
       "category": "developer-tools",
       "tags": ["trellis", "zcode", "hooks", "bridge"]

@@ -1,0 +1,14 @@
+{
+  "name": "zcode-trellis-marketplace",
+  "version": "0.2.0",
+  "private": true,
+  "author": "HLAIA <hlaia@hlaia.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
